@@ -11,8 +11,3 @@ int fun(int a)
     return a + 1;
 }
 
-int c_src_unittest(void)
-{
-    assert(unittest_all_bitops());
-    return 0;
-}

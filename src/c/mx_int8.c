@@ -1,5 +1,6 @@
 #include "mx_int8.h"
 #include <assert.h>
+#include "bitops.h"
 
 bool unittest_max_32_ints(void)
 {
@@ -15,5 +16,15 @@ bool unittest_max_32_ints(void)
 
 bool unittest_max_exp_32_ints(void)
 {
+    assert(clrsb((int32_t)0) == 31);
+    assert(clrsb((int32_t)(1<<10)) == 20);
+    assert(clrsb(-(int32_t)(1<<10)) == 21);
+    uint8_t mexp = max_exp_4_ints(int32_t, (1<<10), (1<<2), (1<<3), (1<<8));
+    assert(mexp == 11);
+    mexp = max_exp_4_ints(int32_t, (1<<10), -(1<<2), -(1<<11), (1<<8));
+    assert(mexp == 12);
+    mexp = max_exp_4_ints(int16_t, (1<<10), -(1<<2), -(1<<13), (1<<8));
+    assert(mexp == 14);
+ 
     return true;
 }

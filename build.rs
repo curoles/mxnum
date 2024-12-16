@@ -27,6 +27,8 @@ fn main() {
 
     cc::Build::new()
         .file("src/c/fun.c")
+		.file("src/c/capi.c")
+		.file("src/c/mx_int8.c")
 		.static_flag(true)
 		.std("gnu17")
 		.opt_level(3)

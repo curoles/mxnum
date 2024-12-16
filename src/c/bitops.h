@@ -358,6 +358,18 @@ static inline bool unittest_ffs(void)
     return true;    
 }
 
+static inline int clrsb16(int16_t i) {
+    return __builtin_clrsb((int32_t)i) - 16;
+}
+
+#define clrsb(x) \
+_Generic( (x), \
+    int16_t: clrsb16, \
+    int: __builtin_clrsb, \
+    long: __builtin_clrsbl, \
+    default: __builtin_clrsb \
+)(x)
+
 #define popcount(x) \
 _Generic( (x), \
     unsigned int: __builtin_popcount, \

@@ -11,7 +11,12 @@ mod tests {
     }
 
     #[test]
-    fn test_c_src_unittest() {
-        assert_eq!(unsafe { c_src_unittest() }, 0);
+    fn test_c_src_unittest_bitops() {
+        assert_eq!(unsafe { capi_unittest_bitops() }, 1);
+    }
+	
+    #[test]
+    fn test_c_src_unittest_max_32_ints() {
+        assert_eq!(unsafe { capi_unittest_max_32_ints() }, 1);
     }
 }

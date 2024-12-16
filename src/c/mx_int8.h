@@ -51,3 +51,13 @@ _Generic( (x), \
 
 bool unittest_max_32_ints(void);
 bool unittest_max_exp_32_ints(void);
+
+#define max_exp_4_ints(T, a, b, c, d) ({ \
+    const T _a = ((a) < 0)? -(a) : (a); const T _b = ((b) < 0)? -(b) : (b); \
+    const T _c = ((c) < 0)? -(c) : (c); const T _d = ((d) < 0)? -(d) : (d); \
+    const uint8_t ae = clrsb(_a); const uint8_t be = clrsb(_b); \
+    const uint8_t ce = clrsb(_c); const uint8_t de = clrsb(_d); \
+    const uint8_t ab = (ae < be) ? ae : be; \
+    const uint8_t cd = (ce < de) ? ce : de; \
+    (8*sizeof(T) - 1) - ((ab < cd) ? ab : cd); })
+

@@ -1,5 +1,6 @@
 .PHONY: build
 build:
+	cargo clippy
 	cargo build
 
 .PHONY: release
